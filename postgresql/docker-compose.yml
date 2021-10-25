@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  postgresql:
+    image: postgres:13.3-alpine
+    container_name: app-postgres
+    ports:
+      - 5432:5432
+    env_file:
+      - ./setup/.env.dev
+    volumes:
+      # copy the sql script to create tables
+      - ./setup/schema-test.sql:/docker-entrypoint-initdb.d/schema-test.sql
+      - postgresql_data:/var/lib/postgresql/data/
+    restart: always
+
+volumes:
+  postgresql_data:

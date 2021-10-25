@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  mongo-db:
+    container_name: my-mongodb
+    image: mongo
+    restart: always   #Automatic restart
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+
+    ports:
+      - 27017:27017
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - ./mongo-data:/data/db
+    privileged: true

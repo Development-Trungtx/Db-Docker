@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  redis:
+    container_name: app-redis
+    image: redis:latest
+    # hostname: my-redis
+    command: redis-server --requirepass 1234Abcd
+    # "unless-stopped" or "always"
+    restart: always
+    ports:
+      - 6379:6379
+
+    volumes:
+      - ./redis-data:/var/lib/redis
+      # - ./setup/redis.conf:/usr/local/etc/redis/redis.conf
+    # command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    # command: redis-server /etc/redis/redis.conf --appendonly yes
+    # command: redis-server --port 6379 --requirepass mypassword  --appendonly yes
