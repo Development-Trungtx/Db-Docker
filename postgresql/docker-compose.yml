@@ -7,7 +7,7 @@ services:
     ports:
       - 5432:5432
     env_file:
-      - ./setup/.env.dev
+      - ./setup/.env.prod
     volumes:
       # copy the sql script to create tables
       - ./setup/schema-test.sql:/docker-entrypoint-initdb.d/schema-test.sql
